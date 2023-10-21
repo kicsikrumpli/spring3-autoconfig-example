@@ -20,5 +20,11 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("fetch from db: {}", repo.getLongTitleByTitle("Hamlet"));
+		log.info("alt: {}",
+				repo.performQuery(
+						"SELECT LongTitle FROM works WHERE Title=?",
+						"Hamlet"
+				).getString(1)
+		);
 	}
 }

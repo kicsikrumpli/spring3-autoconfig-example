@@ -19,12 +19,12 @@ public class ConfigRepositoryBase {
     }
 
     @SneakyThrows
-    private ResultSet performQuery(
+    public ResultSet performQuery(
             String query,
             Object... parameters
     ) {
         PreparedStatement statement = this.connection.prepareStatement(query);
-        IntStream.range(1, parameters.length).forEach(
+        IntStream.range(0, parameters.length).forEach(
                 index -> {
                     try {
                         statement.setObject(index + 1, parameters[index]);
